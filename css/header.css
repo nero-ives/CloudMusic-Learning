@@ -1,0 +1,475 @@
+/* 
+* @Author: bk
+* @Date:   2017-02-19 08:42:24
+* @Last Modified by:   bk
+* @Last Modified time: 2017-02-19 16:52:42
+*/
+@charset "UTF-8"
+body,
+    html,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol,
+    li,
+    dl,
+    dt,
+    dd,
+    header,
+    menu,
+    section,
+    p,
+    input,
+    td,
+    th,
+    ins {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body,
+    textarea,
+    select,
+    input,
+    button {
+      font-size: 12px;
+      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-text-size-adjust: none;
+    }
+    
+    section,
+    header,
+    main,
+    article,
+    aside,
+    ins {
+      display: block;
+    }
+    
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 100%;
+    }
+    
+    em,
+    i {
+      font-style: normal;
+      text-align: left;
+      font-size: inherit;
+    }
+    
+    html,
+    body,
+    img,
+    iframe {
+      border: 0;
+    }
+    
+    textarea {
+      resize: none;
+      overflow: auto;
+    }
+    
+    input:focus,
+    textarea:focus,
+    span:focus,
+    a:focus,
+    button:focus {
+      outline: none;
+    }
+    
+    li,
+    s {
+      list-style: none;
+    }
+    
+    img,
+    .txt {
+      border: 0;
+    }
+    
+    mark {
+      background: none;
+    }
+    
+    [hidefocus] {
+      outline: none;
+    }
+    
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+      color: #333;
+    }
+    
+    a,
+    a *,
+    .f-hand,
+    .f-hand * {
+      cursor: pointer;
+    }
+    
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      table-layout: fixed;
+    }
+    
+    button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+    }
+    /* 公共类 */
+    
+    .inner_c {
+      width: 1110px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      /* 一定要记住：背景图片的位置是图片相对于元素网哪个方向走，网上走就是- 往下走就是+ */
+      background: url(images/topbar.png) 0px -79px;
+      /* background:red;*/
+      font-size: 14px;
+    }
+    
+    .header .header-top {
+      overflow: hidden;
+    }
+    
+    .header .header-top .logo {
+      float: left;
+      padding-top: 15px;
+    }
+    
+    .header .header-top .logo a {
+      display: block;
+      width: 162px;
+      height: 42px;
+      background: url(images/topbar.png) no-repeat 0 0;
+      /* text-indent属性必须要元素设置宽高，a的元素在标准流下必须display才能设置宽高 */
+      text-indent: -999em;
+    }
+    
+    .header .header-top #nav {
+      float: left;
+      padding-left: 18px;
+    }
+    /* .header .header-top ul li 
+    一般情况下不允许这样写，因为可能这个容器下还有其他的ul li 那么同时会被选中，这个时候就会影响布局
+    */
+    
+    .header .header-top #nav li {
+      float: left;
+      height: 70px;
+      position: relative;
+    }
+    
+    .header .header-top #nav li .nav-subarrow {
+      position: absolute;
+      width: 14px;
+      height: 9px;
+      bottom: -1px;
+      left: 50%;
+      margin-left: -7px;
+      background: url(images/topbar.png)no-repeat -226px 0;
+    }
+    
+    .header .header-top #nav li a.fir {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      line-height: 70px;
+      text-decoration: none;
+      text-align: center;
+      color: #CCC;
+      background: url(images/topbar.png) no-repeat 0 -304px;
+    }
+    
+    .header .header-top #nav li span {
+      display: block;
+      position: absolute;
+      top: 0px;
+      right: -1px;
+      width: 2px;
+      height: 70px;
+    }
+    
+    .header .header-top #nav li a.fir:hover {
+      background: url(images/topbar.png) no-repeat 0 -469px;
+    }
+    
+    .header .header-top #nav li a em {
+      padding: 0 20px 0 18px;
+    }
+    
+    .header .header-top #nav li .hot {
+      position: absolute;
+      width: 26px;
+      height: 19px;
+      right: -6px;
+      top: 22px;
+      background: url(images/topbar.png) no-repeat -191px 0;
+    }
+    /* 以下的一条css样式一定要注意选择器的权重以及出现的位置,为了避免出错在当前元素的前面统一加上选择器的全部选择器，位置往最后放，并且css里面有背景内容时要注意一定要有宽高(分块状和行内) */
+    
+    .header .header-top #nav li span.sec {
+      background: url(images/topbar.png) no-repeat -238px -469px;
+    }
+    
+    .header .header-top .search {
+      float: left;
+      padding-top: 20px;
+      padding-left: 125px;
+    }
+    
+    .header .header-top .search .search-bar {
+      width: 178px;
+      height: 30px;
+      border-radius: 15px;
+      background: #eaeaea;
+      position: relative;
+      padding-left: 32px;
+    }
+    
+    .header .header-top .search .search-bar input {
+      width: 148px;
+      height: 30px;
+      border: none;
+      background: #eaeaea;
+    }
+    
+    .header .header-top .search a {
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      left: 13px;
+      top: 8px;
+      font-size: 12px;
+      background: url(images/topbar.png) no-repeat -13px -559px;
+    }
+    
+    .header .header-top .login {
+      float: left;
+      padding-left: 18px;
+      line-height: 70px;
+    }
+    
+    .header .header-top .login>div a {
+      font-size: 12px;
+    }
+    
+    .header .header-top .login>div {
+      /*position: relative;*/
+    }
+    
+    .header .header-top .login>div a {
+      color: #787859;
+      text-decoration: none;
+    }
+    
+    .header .header-top .login>div a.login-aro:hover {
+      color: #ccc;
+    }
+    
+    .header .header-top .login>div .login-showbox {
+      /* 原先将宽和高写在的的盒子里面，并且给定padding值，这样的一个不好的地方有：
+    1、一般父亲盒子不给高，由子盒子撑开
+    2、当父亲盒子给定padding之后，子元素的背景不能铺满父亲盒子的宽度
+    3、一般ul li a 的这种布局，宽高都最好给在a里面，在li父亲盒子li里面给宽高，，，因为a的hover和点击的面积会更大，有利于交互
+
+
+       */
+      background: lime;
+      position: absolute;
+      top: 52px;
+      /* 没有写left相当于left方没有进行定位 */
+      margin-left: -68px;
+      background: url(images/login-showbox.png) no-repeat;
+      padding-top: 8px;
+      line-height: 16px;
+      display: none;
+      z-index: 9999;
+    }
+    
+    .header .header-top .login>div .login-showbox #test {}
+    
+    .header .header-top .login>div .login-showbox li {
+      /* line-height: 38px;
+      width:114px;
+      height:38px;
+      padding-left:46px; */
+    }
+    
+    .header .header-top .login>div .login-showbox a {
+      font-size: 12px;
+      color: #ccc;
+    }
+    
+    .header .header-top .login>div .login-showbox li a {
+      display: block;
+      line-height: 38px;
+      width: 114px;
+      padding-left: 46px;
+    }
+    
+    .header .header-top .login>div .login-showbox #test li a.active {
+      width: 114px;
+      height: 38px;
+      background: rgba(130, 130, 130, 0.3);
+    }
+    /*header-bottom开始*/
+    /* 这里的布局产生了错误
+    应该是在header里面放两个大盒子，大盒子里面显示全屏宽的背景然后在在子盒子里面添加inner_c的类 */
+    
+    .header-bottom {
+      overflow: hidden;
+      background: url(images/topbar.png) 0 -231px;
+    }
+    
+    .header-bottom .sub-menu {
+      padding-left: 186px;
+    }
+    
+    .header-bottom .sub-menu li {
+      float: left;
+    }
+    
+    .header-bottom .sub-menu li a {
+      display: block;
+      line-height: 34px;
+    }
+    
+    .header-bottom .sub-menu li a em {
+      padding: 0 18px;
+    }
+    
+    .header-bottom .sub-menu li a em div {
+      display: inline-block;
+      line-height: 22px;
+      padding: 0 10px;
+      color: #fff;
+      border: solid transparent 1px;
+      border-radius: 11px;
+    }
+    
+    .header-bottom .sub-menu li a em div.current {
+      background: #900403;
+      border: solid #b80b0b 1px;
+      border-radius: 11px;
+      box-shadow: inset 0 0 6px 0px #720109;
+    }
+    /* banner */
+    
+    .banner {
+      background: #e5cdb5;
+    }
+    
+    .banner .banner-center {
+      background: #e5cdb5;
+      height: 336px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .banner .banner-center .ctrl-left a,
+    .banner .banner-center .ctrl-right a {
+      position: absolute;
+      width: 38px;
+      height: 64px;
+      background: url(images/banner.png) no-repeat 0 -360px;
+      top: 50%;
+      margin-top: -32px;
+    }
+    /* 为什么left 和right需要分开写? */
+    
+    .banner .banner-center .ctrl-left a {
+      left: 0;
+    }
+    
+    .banner .banner-center .ctrl-right a {
+      background: url(images/banner.png) no-repeat 0 -508px;
+      right: 0;
+    }
+    
+    .banner .banner-center .ctrl-left a:hover {
+      background: url(images/banner.png) no-repeat 0 -431px;
+    }
+    
+    .banner .banner-center .ctrl-right a:hover {
+      background: url(images/banner.png) no-repeat 0 -578px;
+    }
+    
+    .banner .banner-center .loop-adv li {
+      padding-left: 70px;
+      float: left;
+    }
+    
+    .banner .banner-center .download-client {
+      position: absolute;
+      padding-top: 212px;
+      right: 65px;
+      width: 254px;
+      height: 336px;
+      background: url(images/download.png) no-repeat 0 0;
+    }
+    
+    .banner .banner-center .download-client a {
+      display: block;
+      margin: 0 auto;
+      width: 215px;
+      height: 56px;
+    }
+    
+    .banner .banner-center .download-client a:hover {
+      background: #000;
+      opacity: 0.1;
+    }
+    
+    .banner .banner-center .loop-circles {
+      position: absolute;
+      bottom: 0;
+      left: 435px;
+      margin-left: -60px;
+    }
+    
+    .banner .banner-center .loop-circles li {
+      float: left;
+    }
+    
+    .banner .banner-center .loop-circles li a {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: url(images/banner.png) no-repeat 3px -343px;
+    }
+    
+    .banner .banner-center .loop-circles li a.active {
+      background: url(images/banner.png) no-repeat -17px -343px;
+    }
+ 

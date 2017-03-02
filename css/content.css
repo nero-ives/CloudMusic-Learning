@@ -1,0 +1,57 @@
+@charset "UTF-8"
+/* 
+* @Author: bk
+* @Date:   2017-02-18 14:57:55
+* @Last Modified by:   bk
+* @Last Modified time: 2017-02-19 08:43:45
+*/
+   
+     .inner_content_c {
+      width: 984px;
+      margin: 0 auto;
+      background:red;
+      overflow: hidden;
+    } 
+    .content .music-pro{
+  /* 子元素有宽高，父亲元素是块状元素被撑开，父亲元素获得高度，而且父亲元素有颜色，子元素没有颜色，但是为什么，父亲元素看不见 颜色 
+
+  ----这是因为，子元素遮住了父亲，虽然子元素没有颜色，但是background这个属性不会被子元素继承，子元素是块状元素不管给不给颜色都会遮住父亲元素，父亲元素只是个套住子元素的容器。*/
+  float:left;
+  width: 730px;
+  height: 300px;
+  padding-top:18px;
+  background:skyblue;
+  padding-left:30px;
+}
+.content .music-lside{
+  float: left;
+  width: 254px;
+  height: 300px;
+  background:lime;
+}
+.content .hot-title{
+
+}
+.content .hot-title h2{
+  float:left;
+  line-height:36px;
+  font-size:20px;
+}
+.content .hot-title ul li{
+  float:left;
+}
+.content .hot-title ul li a{
+  display:block;
+  margin-top:14px;
+  width:52px;
+  line-height:12px;
+  font-size:12px;
+  text-align:center;
+  border-right:solid 1px #e0cce0;
+}
+/* .content .hot-title ul li a span{
+  display: block;
+  width: 52px;
+  height: 12px
+  
+} */

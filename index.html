@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    /* *{
+    margin:0;
+    padding:0;
+   } */
+    
+    body,
+    html,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol,
+    li,
+    dl,
+    dt,
+    dd,
+    header,
+    menu,
+    section,
+    p,
+    input,
+    td,
+    th,
+    ins {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body,
+    textarea,
+    select,
+    input,
+    button {
+      font-size: 12px;
+      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-text-size-adjust: none;
+    }
+    
+    section,
+    header,
+    main,
+    article,
+    aside,
+    ins {
+      display: block;
+    }
+    
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 100%;
+    }
+    
+    em,
+    i {
+      font-style: normal;
+      text-align: left;
+      font-size: inherit;
+    }
+    
+    html,
+    body,
+    img {
+      vertical-align: top;
+    }
+    
+    img,
+    iframe {
+      border: 0;
+    }
+    
+    textarea {
+      resize: none;
+      overflow: auto;
+    }
+    
+    input:focus,
+    textarea:focus,
+    span:focus,
+    a:focus,
+    button:focus {
+      outline: none;
+    }
+    
+    li,
+    s {
+      list-style: none;
+    }
+    
+    img,
+    .txt {
+      border: 0;
+    }
+    
+    mark {
+      background: none;
+    }
+    
+    [hidefocus] {
+      outline: none;
+    }
+    
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+      color: #333;
+    }
+    
+    a,
+    a *,
+    .f-hand,
+    .f-hand * {
+      cursor: pointer;
+    }
+    
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      table-layout: fixed;
+    }
+    
+    button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .btm_c {
+      width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .main-iframe {
+      /* 页面的效果受iframe里面具体的页面所控制 */
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    /* 播放器控制按钮 */
+    
+    .play-ctrlbar {
+      position: fixed;
+      bottom: 6px;
+      left: 0;
+      right: 0;
+      /* background: url(images/playbar.png) 0 0;*/
+      z-index: 3000;
+    }
+    
+    .play-ctrlbar .up-down {
+      position: relative;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl {
+      visibility: visible;
+      position: absolute;
+      zoom: 1;
+      top: -47px;
+      left: 0;
+      width: 100%;
+      height: 53px;
+      margin: 0 auto;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .up-down .left-lock {
+      position: absolute;
+      top: -14px;
+      right: 15px;
+      width: 52px;
+      height: 67px;
+      background: url(images/playbar.png) no-repeat;
+      background-position: 0 -380px;
+      float: left;
+      z-index: 10;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .up-down .left-lock a {
+      display: block;
+      width: 18px;
+      height: 18px;
+      margin: 6px 0 0 17px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .up-down .left-lock .lock-btn {
+      background: url(images/playbar.png) no-repeat -80px -380px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .up-down .left-lock .lock-up {
+      background: url(images/playbar.png) no-repeat -100px -380px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .up-down .left-lock .lock-btn:hover {
+      background: url(images/playbar.png) no-repeat -80px -400px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .up-down .right-scroll {
+      position: absolute;
+      top: -1px;
+      right: 0;
+      width: 15px;
+      height: 54px;
+      background: url(images/playbar.png) no-repeat;
+      background-position: -52px -393px;
+      pointer-events: none;
+      float: left;
+      z-index: 10;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .bg {
+      /* 这里可以用绝对定位，也可以像这样直接使用（少写两行代码，因为宽度会继承自父级元素的宽度--块状元素没给宽度继承自父亲元素的宽度，块状元素独自占一行） */
+      position: absolute;
+      left: 0;
+      height: 53px;
+      width: 100%;
+      background: url(images/playbar.png);
+      background-position: 0 0;
+      background-repeat: repeat-x;
+      /* 接着上面的注释，虽然可以不用使用绝对定位，但是如果是标准流的话，如果后面有大量绝对定位出现的话，而且位置会覆盖到该元素出现的位置，这里也要使用绝对定位，将z-index调大，后面的z-index的值调小，以至于不会被覆盖 */
+      z-index: 15;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .hand {
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      left: 0;
+      top: -7px;
+      z-index: 0;
+    }
+    /* .play-ctrlbar .p-topani-ctrl .hand:hover{
+      background:red;
+    } */
+    
+    .play-ctrlbar .p-topani-ctrl .play-content {
+      position: absolute;
+      z-index: 20;
+      left: 50%;
+      top: 6px;
+      margin-left: -500px;
+      height: 47px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .tog-btn {
+      float: left;
+      width: 137px;
+      padding-top: 6px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .tog-btn a.prew,
+    .play-ctrlbar .p-topani-ctrl .play-content .tog-btn a.next {
+      float: left;
+      display: block;
+      width: 28px;
+      height: 28px;
+      margin-top: 5px;
+      margin-right: 8px;
+      background: url(images/playbar.png) no-repeat 0 -130px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .tog-btn a.prew:hover {
+      background: url(images/playbar.png) no-repeat -30px -130px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .tog-btn a.play {
+      float: left;
+      display: block;
+      width: 36px;
+      height: 36px;
+      margin-right: 8px;
+      background: url(images/playbar.png) no-repeat 0 -204px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .tog-btn a.play-pause {
+      float: left;
+      display: block;
+      width: 36px;
+      height: 36px;
+      margin-right: 8px;
+      background: url(images/playbar.png) no-repeat -40px -165px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .tog-btn a.next {
+      background: url(images/playbar.png) no-repeat -80px -130px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .tog-btn a.next:hover {
+      background: url(images/playbar.png) no-repeat -110px -130px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .music-profile {
+      position: relative;
+      float: left;
+      margin: 6px 15px 0 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .music-profile a {
+      position: absolute;
+      display: block;
+      width: 34px;
+      height: 34px;
+      left: 0;
+      top: 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs {
+      float: left;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .music-name {
+      position: relative;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .music-name a:link {
+      font-size: 12px;
+      color: white;
+      line-height: 28px;
+      text-decoration: none;
+      margin-right: 12px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .music-name a:visited {
+      color: #fff;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .music-name a:hover {
+      text-decoration: underline;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .music-name a.song-list {
+      position: absolute;
+      display: block;
+      width: 12px;
+      height: 12px;
+      background: url(images/playbar.png) -111px -104px;
+      left: 112px;
+      top: 8px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .music-name a.song-list:hover {
+      background: url(images/playbar.png) -131px -104px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .time-pres {
+      position: relative;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .time-pres .bar-bg {
+      float: left;
+      position: relative;
+      width: 495px;
+      background: url(images/statbar.png) no-repeat 0 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .time-pres .bar-bg .rdy {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 9px;
+      _font-size: 0;
+      background: url(images/statbar.png) no-repeat right -30px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .time-pres .bar-bg .cur {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 9px;
+      width: 50%;
+      background: url(images/statbar.png) no-repeat left -66px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .time-pres .bar-bg .cur span {
+      position: absolute;
+      display: block;
+      right: -8px;
+      top: -4px;
+      width: 17px;
+      height: 17px;
+      background: url(images/iconall.png) no-repeat -41px -251px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .share {
+      float: left;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .vol-ctrl {
+      float: left;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .time-pres span.time {
+      position: absolute;
+      float: left;
+      right: -85px;
+      top: -5px;
+      color: #797979;
+      font-size: 12px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .play-prgs .time-pres span.time em {
+      color: #a1a1a1;
+    }
+    /* 分享 */
+    
+    .play-ctrlbar .p-topani-ctrl .play-content .share {
+      float: left;
+      margin-top: 14px;
+      margin-left: 106px;
+      overflow: hidden;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .share a.clct {
+      float: left;
+      display: block;
+      width: 18px;
+      height: 18px;
+      background: url(images/playbar.png) no-repeat -92px -166px;
+      margin-right: 10px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .share a.clct:hover {
+      background: url(images/playbar.png) no-repeat -92px -192px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .share a.she {
+      float: left;
+      display: block;
+      width: 18px;
+      height: 18px;
+      background: url(images/playbar.png) no-repeat -118px -166px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .share span {
+      float: left;
+      color: #666;
+      margin-left: 9px;
+      position: relative;
+      top: 2px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .share a.she:hover {
+      background: url(images/playbar.png) no-repeat -118px -192px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-list {
+      float: left;
+      margin-left: 9px;
+      margin-top: 14px;
+      overflow: hidden;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-list a.vol {
+      float: left;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: url(images/playbar.png) no-repeat -5px -250px;
+      margin-right: 10px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-list a.loop {
+      float: left;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: url(images/playbar.png) no-repeat -69px -250px;
+      margin-right: 10px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-list a.songs-page {
+      position: relative;
+      left: 0;
+      top: -4px;
+      float: left;
+      display: block;
+      width: 56px;
+      height: 26px;
+      background: url(images/playbar.png) no-repeat -44px -98px;
+      margin-right: 10px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .play-list a.songs-page i {
+      position: relative;
+      left: 31px;
+      top: 7px;
+      color: #666;
+    }
+    /* 弹出播放歌曲的详细列表和歌词 */
+    
+    .list_cen {
+      width: 982px;
+      margin: 0 auto;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail {
+      display: none;
+      position: absolute;
+      left: 50%;
+      bottom: 46px;
+      margin-left: -500px;
+      height: 300px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd {
+      padding: 0 5px;
+      background: url(images/playlist_bg.png) no-repeat -2px 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen {
+      position: relative;
+      color: #e2e2e2;
+      height: 39px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen h4 {
+      position: absolute;
+      display: inline-block;
+      left: 23px;
+      top: 0;
+      font-size: 14px;
+      height: 39px;
+      line-height: 39px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen a.clct,
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen a.clear {
+      position: absolute;
+      display: block;
+      left: 390px;
+      top: 0;
+      height: 39px;
+      line-height: 39px;
+      color: #ccc;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen a.clear {
+      position: absolute;
+      left: 490px;
+      top: 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen a.clct i,
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen a.clear i {
+      position: relative;
+      top: 4px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+      background: url(images/playlist.png) no-repeat -24px 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen a.clear i {
+      background: url(images/playlist.png) no-repeat -50px 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen a.clct:hover {
+      color: #fff;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen a.clear:hover {
+      color: #fff;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen span.line {
+      position: absolute;
+      top: 11px;
+      left: 473px;
+      height: 15px;
+      border-right: solid 1px #2c2c2c;
+      border-left: solid 1px #000;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen .lyc-title {
+      position: absolute;
+      left: 595px;
+      top: 0;
+      width: 346px;
+      text-align: center;
+      height: 39px;
+      line-height: 39px;
+      color: #fff;
+      font-size: 14px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-hd .hd-cen .li-close {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      text-indent: -999px;
+      cursor: pointer;
+      background: url(images/playlist.png) no-repeat -195px 9px;
+    }
+    /*歌词部分*/
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd {
+      position: absolute;
+      left: 0px;
+      top: 39px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd img {
+      position: absolute;
+      width: 982px;
+      height: 260px;
+      left: 0px;
+      top: 0px;
+      z-index: 1;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .mask {
+      position: absolute;
+      left: 2px;
+      _left: 0;
+      top: 0;
+      z-index: 2;
+      width: 558px;
+      height: 260px;
+      background: #121212;
+      opacity: .7;
+      filter: Alpha(opacity=50);
+    }
+    /* 歌曲列表 */
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list {
+      position: absolute;
+      z-index: 3;
+      left: 10px;
+      top: 0px;
+      color: #fff;
+      font-size: 14px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail {
+      overflow: hidden;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li {
+      float: left;
+      line-height: 28px;
+      overflow: hidden;
+      color: #eaeaea;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li.every {
+      background: #000;
+      cursor: pointer;
+      /* 
+      子元素会继承这些透明的属性，发生变化
+      opacity:.5;
+      filter:alpha(opacity=50); */
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .p-icon {
+      float: left;
+      width: 20px;
+      height: 28px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .p-icon div.cur {
+      position: relative;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      background: url(images/playlist.png) no-repeat -182px 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .s-name {
+      float: left;
+      width: 228px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn {
+      float: left;
+      padding-top: 6px;
+      overflow: hidden;
+      width: 104px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div .clct,
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div .she,
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div .dload,
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div .del {
+      display: block;
+      float: left;
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div.btns .clct {
+      background: url(images/playlist.png) no-repeat -24px 0px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div.btns .clct:hover {
+      background: url(images/playlist.png) no-repeat -24px -20px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div.btns .she {
+      background: url(images/playlist.png) no-repeat 0px 0px;
+    }
+    /* ****hover前面不能有空格 ****/
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div.btns .she:hover {
+      background: url(images/playlist.png) no-repeat 0px -20px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div.btns .dload {
+      background: url(images/playlist.png) no-repeat -57px -51px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div.btns .dload:hover {
+      background: url(images/playlist.png) no-repeat -80px -51px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div.btns .del {
+      background: url(images/playlist.png) no-repeat -52px 0px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .hover-btn div.btns .del:hover {
+      background: url(images/playlist.png) no-repeat -52px -20px;
+    }
+    /* siner-name */
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .singer {
+      float: left;
+      width: 80px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .time {
+      float: left;
+      width: 64px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .source {
+      float: left;
+      padding-top: 6px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .source a {
+      display: block;
+      width: 16px;
+      height: 16px;
+      background: url(images/playlist.png) no-repeat -80px 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .s-list ul.s-li-detail li .source a:hover {
+      display: block;
+      width: 16px;
+      height: 16px;
+      background: url(images/playlist.png) no-repeat -80px -20px;
+    }
+    /* 歌曲列表的滑动控制 */
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .list-ctrl {
+      position: absolute;
+      left: 553px;
+      top: 0;
+      width: 6px;
+      height: 260px;
+      _font-size: 0;
+      z-index: 4;
+      background: #000;
+      opacity: .4;
+      filter: alpha(opacity=40);
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .list-ctrl span.scroll,
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .lyc-ctrl span.lyctrl-scroll {
+      display: block;
+      width: 4px;
+      height: 70px;
+      background: #868686;
+      border: solid 1px #a6a6a6;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    /* 歌词面板 */
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc {
+      position: absolute;
+      z-index: 20;
+      left: 552px;
+      top: 0;
+      width: 430px;
+      height: 260px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .mask-wor {
+      position: absolute;
+      z-index: 21;
+      left: 0;
+      top: 0;
+      width: 430px;
+      height: 260px;
+      background: #000;
+      opacity: .5;
+      filter: alpha(opacity=50);
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .lyc-wor {
+      width: 354px;
+      height: 219px;
+      position: absolute;
+      left: 50%;
+      margin-left: -177px;
+      top: 20px;
+      z-index: 26;
+      overflow: hidden;
+      /*  overflow: hidden; */
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .lyc-wor .plane {
+      position: absolute;
+      width: 354px;
+      left: 0;
+      top: 0;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .lyc-wor .plane p {
+      color: #989898;
+      font-size: 14px;
+      text-align: center;
+      line-height: 32px;
+      -moz-transition: all 2s linear 0s;
+      -webkit-transition: all 2s linear 0s;
+      -o-transition: all 2s linear 0s;
+      transition: all 2s linear 0s;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .lyc-wor .plane p.active {
+      color: #fff;
+      /* transform:translateY(-10px);*/
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .error {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      z-index: 22;
+      right: 23px;
+      top: 22px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 16px;
+      border-radius: 20px;
+      background: #666;
+      cursor: pointer;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .error:hover {
+      background: #999;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .error-out {
+      position: absolute;
+      z-index: 24;
+      right: 6px;
+      top: 50px;
+      width: 80px;
+      background: #b3b1b1;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .error-out a {
+      display: block;
+      text-align: center;
+      width: 80px;
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .lyc-ctrl {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 6px;
+      height: 260px;
+      _font-size: 0;
+      z-index: 23;
+      background: #000;
+      opacity: .7;
+      filter: alpha(opacity=70);
+    }
+    
+    .play-ctrlbar .p-topani-ctrl .detail .de-bd .lyc .lyc-ctrl #_lyctrl-scroll {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 35px;
+      z-index: 28;
+    }
+  </style>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="js/animate.js"></script>
+  <script src="js/playctrl.js"></script>
+  <script src="js/lyc.js"></script>
+  <script src="js/lyc_move.js"></script>
+  <script src="js/addSongList.js"></script>
+</head>
+
+<body>
+  <iframe src="main.html" frameborder="0" width="100%" height="100%" class="main-iframe" id="mainContent"></iframe>
+  <div class="play-ctrlbar" id="_play-ctrl">
+    <div class="p-topani-ctrl" id="_ani-bar">
+      <div class="up-down">
+        <div class="left-lock" id="_lock">
+          <a href="#" class="lock-btn" id="_lock-btn"></a>
+        </div>
+      </div>
+      <div class="bg" id="bg"></div>
+      <div class="hand" id="hand"></div>
+      <div class="play-content btm_c">
+        <div class="tog-btn">
+          <a href="javascript:;" class="prew" title="上一首(ctrl+←)"></a>
+          <a href="javascript:;" class="play" id="_play" title="播放/暂停"></a>
+          <a href="javascript:;" class="next" title="下一首ctrl+→"></a>
+        </div>
+        <div class="music-profile">
+          <img src="images/play-ctrl-profile.jpg" height="34" width="34" alt="" id="pfeImg">
+          <a href="#"></a>
+        </div>
+        <div class="play-prgs">
+          <div class="music-name">
+            <a href="#" id="pBarName">当你老了</a>
+            <a href="#" id="pBarSinger">李健</a>
+            <a href="#" class="song-list" title="来自歌单"></a>
+          </div>
+          <div class="time-pres">
+            <div class="bar-bg">
+              <div class="rdy"></div>
+              <div class="cur">
+                <span>
+                 <i></i>
+               </span>
+              </div>
+            </div>
+            <span class="time">
+            <em>01:13</em>
+              / 04:45
+            </span>
+          </div>
+        </div>
+        <div class="share">
+          <a href="javascript:;" class="clct"></a>
+          <a href="javascript:;" class="she"></a>
+          <span>|</span>
+        </div>
+        <a href="#"></a>
+        <div class="play-list">
+          <a href="#" class="vol"></a>
+          <a href="#" class="loop"></a>
+          <a href="#" class="songs-page" id="_song-page"><i>12</i></a>
+        </div>
+      </div>
+      <div class="detail list_cen" id="detail">
+        <div class="de-hd">
+          <div class="hd-cen">
+            <h4>播放列表(<span>58</span>)
+            </h4>
+            <a href="#" class="clct">
+              <i></i>收藏全部
+            </a>
+            <span class="line"></span>
+            <a href="#" class="clear">
+              <i></i>清除
+            </a>
+            <p class="lyc-title">一个人生活</p>
+            <span class="li-close" id="_li-close"></span>
+          </div>
+        </div>
+        <!-- 歌词部分 -->
+        <div class="de-bd list_cen">
+          <img src="images/lyc-bg.jpeg" height="328" width="328" alt="">
+          <div class="mask"></div>
+          <div class="s-list">
+            <ul class="s-li-detail" id="list_ul">
+              <!-- 1 -->
+              <li id="firstLi">
+                <div class="p-icon">
+                  <div class="cur">
+                    <audio src="data/mp3/莫文蔚 - 当你老了.mp3" id="audio"></audio>
+                  </div>
+                </div>
+                <div class="s-name">最美</div>
+                <div class="hover-btn">
+                  <div>
+                    <em class="clct"></em>
+                    <em class="she"></em>
+                    <em class="dload"></em>
+                    <em class="del"></em>
+                  </div>
+                </div>
+                <div class="singer">羽泉</div>
+                <div class="time">04:46</div>
+                <div class="source">
+                  <a href="#"></a>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="list-ctrl">
+            <span class="scroll"></span>
+          </div>
+          <div class="lyc">
+            <div class="mask-wor"></div>
+            <div class="lyc-wor" id="_lyc-wor">
+              <div class="plane" id='plane'>
+                <p id="lyc_zero"></p>
+                <p id="lyc_fir"></p>
+                <p id="lyc_sec"></p>
+                <p id="lyc_active"></p>
+                <p id="lyc_thi"></p>
+                <p id="lyc_fif"></p>
+                <p id="lyc_six"></p>
+              </div>
+            </div>
+            <div class="error">?</div>
+            <div class="error-out">
+              <a href="#">上传歌词</a>
+              <a href="#">报错</a>
+            </div>
+            <div class="lyc-ctrl">
+              <span class="lyctrl-scroll" id="_lyctrl-scroll"></span>
+            </div>
+          </div>
+          <!-- 歌词面板 -->
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
