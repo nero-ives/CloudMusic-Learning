@@ -2,7 +2,7 @@
  * @Author: XL
  * @Date:   2017-02-24 16:37:32
  * @Last Modified by:   XL
- * @Last Modified time: 2017-03-06 09:29:27
+ * @Last Modified time: 2017-03-06 10:55:04
  */
 
 'use strict';
@@ -66,11 +66,7 @@ $(function() {
     });*/
     $listUl.delegate('li', 'mouseout', function() {
       $('li').each(function(index, ele) {
-        if(dblTag)
-        {
-           $(ele).removeClass('every');
-        }
-       
+          $(ele).removeClass('every');
         $(ele).children('.hover-btn').children('div').removeClass('btns');
       });
     });
@@ -103,7 +99,6 @@ $(function() {
       $('li').removeClass('dbl-every');
       //为该条目添加样式
       $(this).addClass('dbl-every');
-      dblTag =false;
       var id = $(this).attr('id');
       $.ajax({
         type: "get",
@@ -159,7 +154,7 @@ $(function() {
       });
       //auTag = false;
 
-       //return false;
+      //return false;
 
     }); //delegate
     //下面的一行代码不适用于动态添加的元素。
