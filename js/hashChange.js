@@ -12,11 +12,11 @@
     switch (hash) {
       case '#/phb':
         $('#phb').addClass('current');
-        document.getElementById('mainContent').src = '/new/netease/bill.html';
+        document.getElementById('mainContent').src = './bill.html';
         break;
       case '#/main':
         $('#recom').addClass('current');
-        document.getElementById('mainContent').src = '/new/netease/main.html';
+        document.getElementById('mainContent').src = './main.html';
         break;
       default:
         break;
