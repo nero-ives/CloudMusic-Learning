@@ -44,17 +44,6 @@ $(function() {
           } else if (this.className == 'ctrl-right') {
             if (tags) {
               slide(iNow, scrollWidth, 'right')
-                /*animate(a_loopImg[iNow], {
-                  left: scrollWidth
-                });
-                iNow--;
-                if (iNow < 0) {
-                  iNow = a_loopImg.length - 1;
-                }
-                a_loopImg[iNow].style.left = -scrollWidth + 'px';
-                animate(a_loopImg[iNow], {
-                  left: 0
-                }, fn);*/
               tags = false;
               activeBtn(a_cir[iNow].children[0]);
               $banner.css('background-color', bg[iNow]);
@@ -80,8 +69,6 @@ $(function() {
               $banner.css('background-color', bg[iNow]);
               $inner_b.css('background-color', bg[iNow]);
             }
-            // alert(target.innerHTML);
-            /*alert(e);*/
           }
         } //click
     }; //for
@@ -115,7 +102,7 @@ $(function() {
       clearInterval(timer);
     });
     $slideBox.mouseout(function() {
-      timer = setInterval(autoplay,5000);
+      timer = setInterval(autoplay, 5000);
     });
     //封装左滑动和右滑动的函数
     function slide(iTag, value, type, circle) {
@@ -159,10 +146,7 @@ $(function() {
           left: 0
         }, fn);
       }
-
       iNow = iTag;
     } //slide_end
-
   })() //auto func
-
 }); //ready

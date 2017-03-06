@@ -183,23 +183,24 @@
       height: 34px;
       background: url(images/topbar.png) 0 -231px;
     }
-    .tip{
-    	padding-left:2px;
-    	display: none;
-    	position: absolute;
-    	top:50%;
-    	margin-top:-100px;
-    	left:-2px;
-    	width: 102px;
-    	height:200px;
-    	border:solid #aaa 1px;
-    	border-radius:6px;
-    	padding-top:100px;
-    	background:rgba(0,0,0,.8);
+    
+    .tip {
+      padding-left: 2px;
+      display: none;
+      position: absolute;
+      top: 50%;
+      margin-top: -100px;
+      left: -2px;
+      width: 102px;
+      height: 200px;
+      border: solid #aaa 1px;
+      border-radius: 6px;
+      padding-top: 100px;
+      background: rgba(0, 0, 0, .8);
     }
-
-    .tip p{
-    	color: #fff;
+    
+    .tip p {
+      color: #fff;
     }
   </style>
 </head>
@@ -211,31 +212,31 @@
   </div>
   <img src="./images/phb.jpg" height="1792" width="1366" alt="" id="img">
   <div class="tip" id="_tip">
-  	<p>本页面通过url地址的hash值变化改变内容，以图片代替，未实现交互功能</p>
+    <p>本页面通过url地址的hash值变化改变内容，以图片代替，未实现交互功能</p>
   </div>
   <script>
     (function(win) {
-    	//提示
-    	function $$(id){
-    		return document.getElementById(id);
-    	};
-    	console.log($$('img'));
-    	$$('img').onmouseover = function(){
-    		$$('_tip').style.display='block';
-    		setTimeout(function(){
-    			$$('_tip').style.display='none';
-    		},4000);
-    		
-    	}
+      //提示
+      function $$(id) {
+        return document.getElementById(id);
+      };
+      console.log($$('img'));
+      $$('img').onmouseover = function() {
+        $$('_tip').style.display = 'block';
+        setTimeout(function() {
+          $$('_tip').style.display = 'none';
+        }, 4000);
+
+      }
+
       function getTop() {
-        if (window.pageYOffset != null) // ch ff ie9+ 和其他浏览器
-        {
+        if (window.pageYOffset != null) {
           return {
             left: window.pageXOffset,
             top: window.pageYOffset
           }
-        } else if (document.compatMode == "CSS1Compat") // 声明的了 DTD
-        // 检测是不是怪异模式的浏览器 -- 就是没有 声明<!DOCTYPE html>
+        } else if (document.compatMode == "CSS1Compat")
+
         {
           return {
             left: document.documentElement.scrollLeft,
