@@ -6,20 +6,22 @@ window.onload = function() {
     $('#list_ul').html(localStorage['key1'])
   }
   /* localStorage.clear();
-   	 $('#list_ul').html('')*/
+     $('#list_ul').html('')*/
   if (localStorage['pfeSrc']) {
     $('#pfeImg')[0].src = localStorage['pfeSrc'];
     $('#pBarName').text(localStorage['pBarName']);
     $('#pBarSinger').text(localStorage['pBarSinger']);
   }
-
-}
-
+  //页面在家完成后  显示页面的提示信息 
+  setTimeout(function() {
+    $('#_init').css('display', 'none');
+  }, 4000);
+};
 
 function getList(para) {
   $('#list_ul').html('');
   $.ajax({
-    "url": "data/list/song_page.php?para=" + para,
+    "url": "./data/list/song_page.php?para=" + para,
     "type": "get",
     "dataType": "json",
     "async": true,
@@ -37,7 +39,7 @@ function getList(para) {
         html += '<div class="hover-btn"><div>';
         html += '<em class="clct"></em><em class="she"></em><em class="dload"></em><em class="del"></em>';
         html += '</div></div>';
-        html += '<div class="singer">' + data[i].singer + '</div>';
+        html += '<div class="singer"><a href="#">' + data[i].singer + '</a></div>';
         html += '<div class="time">' + data[i].time + '</div>';
         html += '<div class="source"><a href="#"></a></div>';
         html += '</li>';
@@ -51,8 +53,9 @@ function getList(para) {
     }
 
   })
-
-
-
-
+};
+//必须是一个全局的函数  topbar 跟随
+function func(value) {
+  $('#header').css('top', -value);
+  $('#_header-bottom').css('top', -value + 70);
 }

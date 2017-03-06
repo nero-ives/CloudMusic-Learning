@@ -1,0 +1,1195 @@
+ body,
+    html,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ul,
+    ol,
+    li,
+    dl,
+    dt,
+    dd,
+    header,
+    menu,
+    section,
+    p,
+    input,
+    td,
+    th,
+    ins {
+      padding: 0;
+      margin: 0;
+    }
+    
+    body,
+    textarea,
+    select,
+    input,
+    button {
+      font-size: 12px;
+      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-text-size-adjust: none;
+    }
+    
+    section,
+    header,
+    main,
+    article,
+    aside,
+    ins {
+      display: block;
+    }
+    
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      word-wrap: break-word;
+      word-break: break-word;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 100%;
+    }
+    
+    em,
+    i {
+      font-style: normal;
+      text-align: left;
+      font-size: inherit;
+    }
+    
+    html,
+    body,
+    img {
+      vertical-align: top;
+    }
+    
+    img,
+    iframe {
+      border: 0;
+    }
+    
+    textarea {
+      resize: none;
+      overflow: auto;
+    }
+    
+    input:focus,
+    textarea:focus,
+    span:focus,
+    a:focus,
+    button:focus {
+      outline: none;
+    }
+    
+    li,
+    s {
+      list-style: none;
+    }
+    
+    img,
+    .txt {
+      border: 0;
+    }
+    
+    mark {
+      background: none;
+    }
+    
+    [hidefocus] {
+      outline: none;
+    }
+    
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+      color: #333;
+    }
+    
+    a,
+    a *,
+    .f-hand,
+    .f-hand * {
+      cursor: pointer;
+    }
+    
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      table-layout: fixed;
+    }
+    
+    button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+    }
+    /* 公共类 */
+    
+    body {
+      font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+      height: auto;
+    }
+    
+    .inner_c {
+      width: 1110px;
+      margin: 0 auto;
+    }
+    /* header */
+    
+    .inner_c {
+      width: 1110px;
+      margin: 0 auto;
+    }
+    
+    .common_a {
+      display: block;
+      text-decoration: none;
+    }
+    
+    .header {
+      /* 一定要记住：背景图片的位置是图片相对于元素网哪个方向走，网上走就是- 往下走就是+ */
+      background: url(../images/topbar.png) 0px -79px;
+      /* background:red;*/
+      width: 100%;
+      height: 71px;
+    }
+    
+    .header-bottom {
+      width: 100%;
+      height: 34px;
+      background: url(../images/topbar.png) 0 -231px;
+    }
+    /* banner */
+    
+    .banner {
+      background: #915521;
+    }
+    
+    .banner .banner-center {
+      background: #915521;
+      height: 336px;
+      position: relative;
+      padding-left: 60px;
+      width: 1040px;
+      /* background: lightblue;*/
+      overflow: hidden;
+    }
+    
+    .banner .banner-center .slide-loop {
+      width: 730px;
+      height: 336px;
+      overflow: hidden;
+    }
+    
+    .banner .banner-center .slide-loop .loop-adv {
+      position: relative;
+      height: 336px;
+    }
+    
+    .banner .banner-center .slide-loop .loop-adv li {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 730px;
+      height: 336px;
+    }
+    
+    .banner .banner-center .slide-loop .slide-ctrl .ctrl-left a,
+    .banner .banner-center .slide-loop .slide-ctrl .ctrl-right a {
+      position: absolute;
+      width: 38px;
+      height: 64px;
+      top: 50%;
+      margin-top: -32px;
+    }
+    /* 为什么left 和right需要分开写?因为上面的交集选择器权重要大很多 */
+    
+    .banner .banner-center .slide-loop .ctrl-left a {
+      background: url(../images/banner.png) no-repeat 0 -360px;
+      left: 0;
+    }
+    
+    .banner .banner-center .slide-loop .ctrl-right a {
+      background: url(../images/banner.png) no-repeat 0 -508px;
+      right: 0;
+    }
+    
+    .banner .banner-center .slide-loop .ctrl-left a:hover {
+      background: url(../images/banner.png) no-repeat 0 -430px;
+    }
+    
+    .banner .banner-center .slide-loop .ctrl-right a:hover {
+      background: url(../images/banner.png) no-repeat 0 -578px;
+    }
+    /*.banner .banner-center .slide-loop .loop-adv{
+      width: 730px;
+      height:336px;
+    }*/
+    
+    .banner .banner-center .download-client {
+      /* 使用了正确的定位，下面的子元素位置也变了，这就是为什么a-hover不出来的原因 */
+      position: absolute;
+      top: 0;
+      right: 59px;
+      width: 252px;
+      height: 336px;
+      background: url(../images/download.png) no-repeat 0 0;
+      z-index: 1000;
+    }
+    
+    .banner .banner-center .download-client a {
+      position: absolute;
+      left: 50%;
+      bottom: 68px;
+      margin-left: -107px;
+      display: block;
+      width: 215px;
+      height: 56px;
+    }
+    
+    .banner .banner-center .download-client a:hover {
+      background: #000;
+      opacity: 0.1;
+    }
+    
+    .banner .banner-center .loop-circles {
+      position: absolute;
+      bottom: 0;
+      left: 435px;
+      margin-left: -60px;
+    }
+    
+    .banner .banner-center .loop-circles li {
+      float: left;
+    }
+    
+    .banner .banner-center .loop-circles li a {
+      display: block;
+      width: 20px;
+      height: 20px;
+      text-indent: -66em;
+      background: url(../images/banner.png) no-repeat 3px -343px;
+    }
+    
+    .banner .banner-center .loop-circles li a:hover {
+      background: url(../images/banner.png) no-repeat -17px -343px;
+    }
+    
+    .banner .banner-center .loop-circles li a.active {
+      background: url(../images/banner.png) no-repeat -17px -343px;
+    }
+    /* content开始 */
+    
+    .inner_content_c {
+      width: 980px;
+      margin: 0 auto;
+      overflow: hidden;
+      border: solid #d3d3d3 1px;
+    }
+    
+    .content .music-pro {
+      /* 子元素有宽高，父亲元素是块状元素被撑开，父亲元素获得高度，而且父亲元素有颜色，子元素没有颜色，但是为什么，父亲元素看不见 颜色 
+
+  ----这是因为，子元素遮住了父亲，虽然子元素没有颜色，但是background这个属性不会被子元素继承，子元素是块状元素不管给不给颜色都会遮住父亲元素，父亲元素只是个套住子元素的容器。*/
+      float: left;
+      width: 680px;
+      padding: 18px 20px 0 29px;
+      border-right: solid 1px #d4d4d4;
+    }
+    /* hot-title开始 */
+    
+    .content .hot-title {
+      /* title没有宽度，但是会被子元素撑出宽度，title的宽度是680px,但是子元素的宽度(实际占位的宽度加起来没有680px),这是为什么，这是因为title的子元素采用的是浮动布局，而浮动布局的元素会往父亲一级元素的左或者是右靠，，当title的子元素向右浮动的时候，会往父亲元素的最右端靠齐，所以整个父元素的宽度就被撑满了680px了 */
+      overflow: hidden;
+      border-bottom: solid 2px #c10d0c;
+      padding-bottom: 3px;
+    }
+    
+    .content .hot-title h2 {
+      float: left;
+      line-height: 36px;
+      font-size: 20px;
+      color: #333;
+    }
+    
+    .content .hot-title .tab,
+    .content .hot-title .hot-more {
+      float: left;
+      margin-left: 18px;
+      line-height: 36px;
+    }
+    /* css中的层叠性中的选择器中的权重的比较 
+
+当两条语句都选择该元素的时候，谁的权重大听谁的，而不是依靠出现的先后的顺序(依靠此法则判断是因为选择器的权重是一样的)*/
+    
+    .content .hot-title .hot-more {
+      float: right;
+    }
+    
+    .content .hot-title .tab a,
+    .content .hot-title .hot-more a {
+      padding: 0 14px;
+      text-decoration: none;
+      color: #666;
+    }
+    
+    .content .hot-title .hot-more a {
+      padding: 0 6px;
+    }
+    
+    .content .hot-title .hot-more i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: url(../images/index.png) no-repeat 0 -238px;
+    }
+    /* hot-content结束 */
+    
+    .content .music-pro .hot-content {
+      padding-top: 20px;
+    }
+    /* 第一个li元素 */
+    
+    .content .music-pro .hot-content .profile {
+      overflow: hidden;
+    }
+    
+    .content .music-pro .hot-content .profile li {
+      float: left;
+      margin: 0 0 0 40px;
+      padding-bottom: 30px;
+      height: 204px;
+    }
+    
+    .content .music-pro .hot-content .profile li.pf-fir {
+      margin-left: 0;
+      /*****
+      每行的第一个元素一定要清除浮动，清除上一行浮动的元素对自己造成的影响
+   ****/
+      clear: both;
+    }
+    
+    .content .music-pro .hot-content .profile {}
+    
+    .content .music-pro .hot-content .profile-top {
+      position: relative;
+    }
+    
+    .content .music-pro .hot-content .profile-top img {
+      border: 0;
+      vertical-align: top;
+    }
+    /* 如果下面这条语句在a的后面不加上.photo会把后面元素的子元素里面的a选中，这是为什么 */
+    
+    .content .music-pro .hot-content .profile li .profile-top a.photo {
+      display: block;
+      width: 138px;
+      height: 110px;
+      border: solid 1px #5b5d62;
+      border-bottom: solid 1px #000000;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: url(../images/coverall.png) no-repeat 0 0;
+    }
+    
+    .content .music-pro .hot-content .profile li .pf-iner-btm {
+      position: absolute;
+      padding-left: 9px;
+      bottom: 0;
+      left: 0;
+      width: 129px;
+      height: 27px;
+      border: solid 1px #5b5d62;
+      border-bottom: #000000;
+      line-height: 26px;
+      background: url(../images/coverall.png) no-repeat 0 -538px;
+    }
+    
+    .content .music-pro .hot-content .profile li .pf-iner-btm {
+      overflow: hidden;
+    }
+    
+    .content .music-pro .hot-content .profile li .pf-iner-btm em {
+      float: left;
+      display: block;
+      margin-top: 8px;
+      width: 14px;
+      height: 11px;
+      background: url(../images/iconall.png) no-repeat 0 -24px;
+    }
+    
+    .content .music-pro .hot-content .profile li .pf-iner-btm span {
+      float: left;
+      padding: 0 5px;
+      color: #ccc;
+    }
+    
+    .content .music-pro .hot-content .profile li .profile-top .pf-iner-btm a.play-icon {
+      position: absolute;
+      display: block;
+      width: 17px;
+      height: 17px;
+      right: 10px;
+      bottom: 5px;
+      background: url(../images/iconall.png) no-repeat 0 0;
+    }
+    
+    .content .music-pro .hot-content .profile li .profile-top .pf-iner-btm a.play-icon:hover {
+      background: url(../images/iconall.png) no-repeat 0 -60px;
+    }
+    /* li元素最下面的p元素 */
+    
+    .content .music-pro .hot-content .profile li p {
+      padding-top: 10px;
+    }
+    
+    .content .music-pro .hot-content .profile li p a {
+      display: block;
+      width: 140px;
+      text-decoration: none;
+      color: #00003a;
+      font-size: 14px;
+      line-height: 19px;
+    }
+    
+    .content .music-pro .hot-content .profile li p i {}
+    /* 广告 */
+    
+    .content .adv-system {
+      width: 680px;
+      height: 75px;
+      margin-bottom: 35px;
+    }
+    
+    .content .adv-system iframe {
+      height: 75px;
+    }
+    /*新碟上新*/
+    
+    .newDisco {
+      margin-bottom: 35px;
+    }
+    
+    .newDisco .newDisco-title {
+      overflow: hidden;
+      border-bottom: solid 2px #c10d0c;
+      padding-bottom: 3px;
+      margin-bottom: 20px;
+    }
+    
+    .newDisco .newDisco-title h2 {
+      float: left;
+      line-height: 36px;
+      font-size: 20px;
+      color: #333;
+    }
+    
+    .content .newDisco .newDisco-more {
+      float: right;
+      margin-left: 18px;
+      line-height: 36px;
+    }
+    
+    .content .newDisco-title .newDisco-more a {
+      padding: 0 14px;
+      text-decoration: none;
+      color: #666;
+    }
+    
+    .newDisco .newDisco-title .newDisco-more a {
+      padding: 0 6px;
+    }
+    
+    .newDisco .newDisco-title .newDisco-more i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: url(../images/index.png) no-repeat 0 -238px;
+    }
+    /* newDisco-content开始 */
+    
+    .newDisco .newDisco-content {
+      padding: 29px 0 16px 30px;
+      position: relative;
+      background: #f5f5f5;
+      border: solid 1px #d3d3d3;
+    }
+    
+    .newDisco .newDisco-content a.nD-prew,
+    .newDisco .newDisco-content a.nD-next {
+      position: absolute;
+      display: block;
+      width: 8px;
+      height: 13px;
+      margin-top: -6px;
+      top: 44%;
+      background: url(../images/index.png) no-repeat -264px -77px;
+    }
+    
+    .newDisco .newDisco-content a.nD-prew {
+      left: 9px;
+    }
+    
+    .newDisco .newDisco-content a.nD-next {
+      right: 9px;
+      /******* 
+      left和right值必须单独写，不然该条语句的权重干不过上面这要语句的权重
+      .newDisco .newDisco-content a.nD-prew,.newDisco .newDisco-content a.nD-next
+   *******/
+      background: url(../images/index.png) no-repeat -306px -77px;
+    }
+    
+    .newDisco .newDisco-content .nD-profile {
+      overflow: hidden;
+    }
+    
+    .newDisco .newDisco-content .nD-profile li {
+      float: left;
+      margin-right: 26px;
+    }
+    
+    .newDisco .newDisco-content .nD-profile li div {
+      position: relative;
+      padding-bottom: 5px;
+    }
+    
+    .newDisco .newDisco-content .nD-profile li img {
+      vertical-align: top;
+    }
+    
+    .newDisco .newDisco-content .nD-profile li .newD-pfe {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: 116px;
+      height: 100px;
+      background: url(../images/coverall.png) no-repeat 0 -570px;
+    }
+    
+    .newDisco .newDisco-content .nD-profile li .newD-play {
+      display: block;
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      background: url(../images/iconall.png) no-repeat 0 -111px;
+    }
+    
+    .newDisco .newDisco-content .nD-profile li p.p-singer a {
+      color: #666;
+    }
+    
+    a .newDisco .newDisco-content .nD-profile li p.p-title a {
+      color: #000;
+    }
+    /* 榜单开始 */
+    /*新碟上新*/
+    
+    .content .singles-chart {
+      margin-bottom: 35px;
+      width: 680px;
+    }
+    
+    .content .singles-chart .chart-title {
+      overflow: hidden;
+      border-bottom: solid 2px #c10d0c;
+      padding-bottom: 3px;
+      margin-bottom: 20px;
+    }
+    
+    .content .singles-chart .chart-title h2 {
+      float: left;
+      line-height: 36px;
+      font-size: 20px;
+      color: #333;
+    }
+    
+    .content .singles-chart .chart-more {
+      float: right;
+      margin-left: 18px;
+      line-height: 36px;
+    }
+    
+    .content .chart-title .chart-more a {
+      padding: 0 14px;
+      text-decoration: none;
+      color: #666;
+    }
+    
+    .singles-chart .chart-title .chart-more a {
+      padding: 0 6px;
+    }
+    
+    .singles-chart .chart-title .chart-more i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: url(../images/index.png) no-repeat 0 -238px;
+    }
+    /* 榜单内容 */
+    
+    .content .singles-chart .chart-content {
+      width: 680px;
+      background: url(../images/index_bill.png) no-repeat 0 0;
+      overflow: hidden;
+    }
+    
+    .content .singles-chart .chart-content .up-bill {
+      width: 230px;
+      float: left;
+    }
+    
+    .content .singles-chart .chart-content .up-bill.last {
+      width: 220px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .top {
+      padding: 20px 0 0 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .top .bill-photo {
+      float: left;
+      position: relative;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .top .bill-photo a {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: 80px;
+      height: 80px;
+      background: url(../images/coverall.png) no-repeat -146px -57px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .top .bill-des {
+      margin-left: 10px;
+      float: left;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .top .bill-des .btn {
+      padding-top: 12px;
+      overflow: hidden;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .top .bill-des .btn a.btn-fir,
+    .content .singles-chart .chart-content .up-bill .top .bill-des .btn a.btn-sec {
+      float: left;
+      display: block;
+      width: 24px;
+      height: 24px;
+      background: url(../images/index.png) no-repeat -267px -204px;
+      margin-right: 10px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .top .bill-des .btn a.btn-fir:hover {
+      background: url(../images/index.png) no-repeat -267px -234px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .top .bill-des .btn a.btn-sec {
+      background: url(../images/index.png) no-repeat -296px -204px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .top .bill-des .btn a.btn-sec:hover {
+      background: url(../images/index.png) no-repeat -296px -234px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list {
+      padding: 0 0 0 20px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol {
+      padding-left: 8px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li {
+      padding: 0 12px 0 0;
+      line-height: 32px;
+      font-size: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li span {
+      float: left;
+      font-size: 16px;
+      color: #666;
+      padding-right: 12px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li span.fir,
+    .content .singles-chart .chart-content .up-bill .list ol li span.sec,
+    .content .singles-chart .chart-content .up-bill .list ol li span.thi {
+      color: #c10d0c
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .s-name {
+      color: #000;
+      float: left;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .list-hover {
+      display: none;
+      position: absolute;
+      right: 12px;
+      top: 8px;
+      width: 80px;
+      height: 20px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .check-all .list-hover {
+      display: none;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .list-hover a {
+      margin-right: 10px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .list-hover .play {
+      float: left;
+      display: block;
+      width: 19px;
+      height: 19px;
+      background: url(../images/index.png) no-repeat -267px -267px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .list-hover .play:hover {
+      background: url(../images/index.png) no-repeat -267px -287px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .list-hover .add {
+      float: left;
+      display: block;
+      width: 19px;
+      height: 19px;
+      background: url(../images/icon.png) no-repeat 0 -697px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .list-hover .add:hover {
+      background: url(../images/icon.png) no-repeat -22px -697px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .list-hover .clet {
+      float: left;
+      display: block;
+      width: 19px;
+      height: 19px;
+      margin-right: 0;
+      background: url(../images/index.png) no-repeat -296px -267px;
+    }
+    
+    .content .singles-chart .chart-content .up-bill .list ol li .list-hover .clet:hover {
+      background: url(../images/index.png) no-repeat -296px -287px;
+    }
+    
+    .content .singles-chart .chart-content .list ol li span {
+      float: left;
+    }
+    /* .content .singles-chart .chart-content .list ol li span.ol-last{
+    position: relative;
+    left:-2px;
+   } */
+    
+    .content .singles-chart .chart-content .list ol li .s-name {
+      float: left;
+      display: block;
+      width: 148px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: normal;
+    }
+    
+    .content .singles-chart .chart-content .list ol .check-all {
+      position: relative;
+      height: 32px;
+    }
+    
+    .content .singles-chart .chart-content .list ol .check-all a {
+      position: absolute;
+      right: 30px;
+    }
+    /* 边栏开始 */
+    
+    .content .music-lside {
+      float: left;
+      width: 250px;
+    }
+    
+    .content .music-lside .user-login {
+      padding-left: 20px;
+      background: url(../images/index.png) no-repeat 0 0;
+      margin-bottom: 6px;
+    }
+    
+    .content .music-lside .user-login p {
+      padding: 16px 0;
+      line-height: 22px;
+    }
+    
+    .content .music-lside .user-login .btn {
+      padding: 0 74px 18px 55px;
+    }
+    
+    .content .music-lside .user-login .btn a {
+      margin: 0 auto;
+      display: block;
+      width: 100px;
+      height: 31px;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      text-decoration: none;
+      background: url(../images/index.png) no-repeat 0 -195px;
+    }
+    
+    .content .music-lside .user-login .btn a:hover {
+      background: url(../images/index.png) no-repeat -110px -195px;
+    }
+    /* 入驻歌手 */
+    
+    .content .music-lside .singers-in {
+      padding: 9px 20px 0;
+    }
+    
+    .content .music-lside .singers-in .title {
+      overflow: hidden;
+      border-bottom: solid 1px #ccc;
+    }
+    
+    .content .music-lside .singers-in .title h2 {
+      line-height: 30px;
+      float: left;
+    }
+    
+    .singers-in .title a {
+      float: right;
+    }
+    
+    .content .music-lside .singers-in .s-page {}
+    
+    .content .music-lside .singers-in .s-page dl {
+      padding-top: 14px;
+    }
+    
+    .content .music-lside .singers-in .s-page dl dt a {
+      display: block;
+      width: 211px;
+      overflow: hidden;
+    }
+    
+    .content .music-lside .singers-in .s-page dl dt a img {
+      float: left;
+      vertical-align: top;
+    }
+    
+    .content .music-lside .singers-in .s-page dl dt a div {
+      float: left;
+      margin-left: 14px;
+    }
+    
+    .content .music-lside .singers-in .s-page dl dt a h2,
+    .singers-in .s-page dl dt a p {
+      overflow: hidden;
+      width: 110px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    .content .music-lside .singers-in .s-page dl dt a h2 {
+      line-height: 38px;
+      color: #000:
+    }
+    
+    .singers-in .s-page dl dt a p {
+      color: #666;
+      line-height: 24px;
+    }
+    
+    .content .music-lside .singers-in .ap-singer {
+      padding-top: 14px;
+    }
+    
+    .content .music-lside .singers-in .ap-singer a {
+      text-decoration: none;
+      display: block;
+      width: 211px;
+      line-height: 28px;
+      border: 1px solid #c4c4c4;
+      border-radius: 4px;
+      text-align: center;
+    }
+    
+    .content .music-lside .singers-in {
+      margin-bottom: 26px;
+    }
+    /* 热门dj */
+    
+    .content .music-lside .hot-dj {
+      padding-left: 20px;
+    }
+    
+    .content .music-lside .hot-dj .title h3 {
+      width: 211px;
+      line-height: 30px;
+      border-bottom: solid 1px #c4c4c4;
+    }
+    
+    .content .music-lside .hot-dj .dj-profile {
+      margin-top: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .content .music-lside .hot-dj .dj-profile ul li {
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    /* 浮动的元素一定要记住父亲元素overflow:hidden */
+    
+    .content .music-lside .hot-dj .dj-profile ul li img {
+      float: left;
+    }
+    
+    .content .music-lside .hot-dj .dj-profile ul li a.mask {
+      position: absolute;
+      display: block;
+      width: 40px;
+      height: 40px;
+      left: 0px;
+    }
+    
+    .content .music-lside .hot-dj .dj-profile ul li .pfe-des {
+      margin-left: 10px;
+      float: left;
+    }
+    
+    .content .music-lside .hot-dj .dj-profile ul li .pfe-des h2 {
+      margin-bottom: 2px;
+    }
+    
+    .content .music-lside .hot-dj .dj-profile ul li .pfe-des h2 a {
+      line-height: 24px
+    }
+    
+    .footer a {
+      color: #9c9c9c;
+    }
+    
+    .footer p {
+      text-decoration: normal;
+    }
+    /* footer */
+    
+    .footer {
+      height: 106px;
+      margin-top: 35px;
+      overflow: hidden;
+      border: none;
+    }
+    
+    .footer div a {
+      height: 40px;
+      text-decoration: none;
+    }
+    
+    .footer div a h2 {
+      position: relative;
+      top: -2px;
+    }
+    
+    .footer div a p {
+      position: relative;
+      top: 3px;
+    }
+    
+    .footer div a h2,
+    .footer div a p {
+      padding-left: 42px;
+    }
+    
+    .footer .alone a {
+      display: block;
+      height: 36px;
+      background: url(../images/sprite.png) no-repeat -405px -86px;
+      text-decoration: none;
+    }
+    
+    .footer .alone,
+    .footer .music-column,
+    .footer .netease {
+      float: left;
+      margin-right: 68px;
+    }
+    
+    .footer .music-column a {
+      height: 36px;
+      background: url(../images/sprite.png) no-repeat -405px -128px;
+    }
+    /*.footer .netease a p,.footer .netease p h2{
+ margin-top:10px;
+ }*/
+    
+    .footer .netease h1 h2 {
+      margin-bottom: 10px;
+    }
+    /* 弹出登录框 */
+    
+    .login-in {
+      display: none;
+      width: 530px;
+      height: 300px;
+      position: fixed;
+      left: 500px;
+      top: 200px;
+      background: #fff;
+      box-shadow: 2px 2px 2px #6c6c6c;
+      z-index:1111;
+    }
+    
+    .login-in .login-top {
+      position: relative;
+      background: #2d2d2d;
+      border-radius: 3px 3px 0 0;
+    }
+    
+    .login-in .login-top:hover {
+      cursor: move;
+    }
+    
+    .login-in .login-top span {
+      font-size: 14px;
+      color: #fff;
+      line-height: 38px;
+      padding-left: 18px;
+    }
+    
+    .login-in .login-btm {
+      padding: 40px 0 39px;
+      overflow: hidden;
+    }
+    
+    .login-in .login-btm .phone-login {
+      float: left;
+      width: 224px;
+      padding: 0 35px 4px 40px;
+      border-right: dotted 1px #666;
+    }
+    
+    .login-in .login-btm .phone-login .plt-bg {
+      height: 120px;
+      background: url(../images/platform.png);
+    }
+    
+    .login-in .login-btm .phone-login .btn {
+      margin-top: 10px;
+    }
+    
+    .login-in .login-btm .phone-login .btn a.phone {
+      display: block;
+      width: 219px;
+      background: #2979c7;
+      border-radius: 5px;
+      line-height: 32px;
+      text-align: center;
+      cursor: pointer;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .login-in .login-btm .phone-login .btn a.phone:hover {
+      /*background:rgba(41,121,199,0.7);*/
+      background: url(../images/button2.png) no-repeat 0 -1730px;
+    }
+    
+    .login-in .login-btm .phone-login .btn a.register {
+      display: block;
+      width: 219px;
+      background: #f3f3f3;
+      border-radius: 5px;
+      line-height: 32px;
+      text-align: center;
+      cursor: pointer;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .login-in .login-btm .phone-login .btn a.register:hover {
+      background: rgba(242, 242, 242, 0.5);
+    }
+    
+    .login-in .login-btm .other-login {
+      float: left;
+      padding: 3px 0 3px 39px;
+      margin-top: -15px;
+    }
+    
+    .login-in .login-btm .other-login ul li {
+      margin-top: 15px;
+    }
+    
+    .login-in .login-btm .other-login a {
+      line-height: 38px;
+    }
+    
+    .login-in .login-btm .other-login a em {
+      display: inline-block;
+      width: 38px;
+      height: 38px;
+      /* 这个属性是将背景图片垂直居中,不垂直居中的话，会底端对齐 */
+      vertical-align: middle;
+      margin-right: 14px;
+    }
+    
+    .login-in .login-btm .other-login a em.wx {
+      background: url(../images/logo.png) no-repeat -150px -670px;
+    }
+    
+    .login-in .login-btm .other-login a em.qq {
+      background: url(../images/logo.png) no-repeat -190px -670px;
+    }
+    
+    .login-in .login-btm .other-login a em.wb {
+      background: url(../images/logo.png) no-repeat -231px -670px;
+    }
+    
+    .login-in .login-btm .other-login a em.wy {
+      background: url(../images/logo.png) no-repeat -271px -670px;
+    }
+    
+    .login-in .close {
+      position: absolute;
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: url(../images/layer.png) no-repeat 0 -94px;
+      right: 20px;
+      top: 16px;
+      cursor: pointer;
+    }

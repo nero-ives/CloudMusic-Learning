@@ -1,0 +1,13 @@
+1、ie10以下，不支持将script标签写在除了head 和body里面的其他任何地方。
+2、ie8  以下不支持addEventListener,有自己特定的事件。
+3、ie8 以下的iframe问题。
+4、ie8 以下不支持html5新特性,也就不支持audio的pause(),play()方法;
+
+
+
+
+link标签和script的区别
+
+
+link标签引入css样式文件以css样式文件为参考路径为基准。
+script标签引入js文件，在js里面使用相对路径操作dom和其他的操作，无论这个文件是在头部引入还是在body引入，都是以引入的当前的html文件为准。

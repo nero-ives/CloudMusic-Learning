@@ -1,10 +1,3 @@
-/* 
- * @Author: bk
- * @Date:   2017-02-25 00:21:21
- * @Last Modified by:   bk
- * @Last Modified time: 2017-02-25 13:38:38
- */
-
 'use strict';
 $(function() {
   (function(w) {
@@ -20,16 +13,16 @@ $(function() {
         var top = e.clientY - disY;
         oScroll.style.top = top + 'px';
         plane.style.top = -top + 'px';
+        return false;
       }
+      return false;
     }
     oScroll.onmouseup = function() {
-      document.onmousemove = null;
-    }
-   /* var top = 32;
-    var timer  = setInterval(function(){
-    	oScroll.style.top = top + 'px';
-        plane.style.top = -top + 'px';
-        top += top;
-    },5000);*/
+        document.onmousemove = null;
+      }
+     //歌单滚动条
+     var scroll = $('#scroll');
+      
+     
   })(window); //auto func
 })

@@ -2,7 +2,7 @@
  * @Author: XL
  * @Date:   2017-02-24 16:37:32
  * @Last Modified by:   XL
- * @Last Modified time: 2017-03-02 09:38:08
+ * @Last Modified time: 2017-03-06 09:29:27
  */
 
 'use strict';
@@ -48,6 +48,7 @@ $(function() {
     var auTag = true; //播放，暂停的标志。
     //jq的方式，移入移除显示小图标
     //delegate用于新增和原先页面的元素
+    var dblTag = true;
     $listUl.delegate('li', 'mouseover', function() {
       //为什么这里使用 $a_eveList会不行呢，这是因为 $a_eveList是页面原先的元素，但是后来通过同台加载，这些元素被销毁了。
       /*$a_eveList.each(function(index, ele) {*/
@@ -65,7 +66,11 @@ $(function() {
     });*/
     $listUl.delegate('li', 'mouseout', function() {
       $('li').each(function(index, ele) {
-        $(ele).removeClass('every');
+        if(dblTag)
+        {
+           $(ele).removeClass('every');
+        }
+       
         $(ele).children('.hover-btn').children('div').removeClass('btns');
       });
     });
@@ -76,8 +81,8 @@ $(function() {
     //此处需要用到ajax从服务器上获取数据
     //
     //暂时的一个处理的思路是 将播放列表动态的插入到歌单中（使用面向对象的方式，从后台将数据--插入列表的个数和详细的内容），然后再每条列表相应元素下面的歌曲的唯一id，通过这个id获取歌曲地址和歌词文件
-    //定义一个数组用于存放每次双击之后双击元素的id,当点击大的播放按钮的时候，能够找到当前播放元素的id
-    var playBtn = '';
+    //定义一个变量用于存放每次双击之后双击元素的id,当点击大的播放按钮的时候，能够找到当前播放元素的id
+    var playBtnTag = false;
     //
     var lyric = '';
     $listUl.delegate('li', 'dblclick', function() {
@@ -85,26 +90,42 @@ $(function() {
 
       //audio.play();
       //$('#audios').play();
-      var aClct = $('#list_ul')[0];
       // console.log(aClct);
-      var a_audio = aClct.getElementsByTagName('audio');
+      var a_audio = $('#list_ul li .p-icon audio');
+      a_audio.each(function(index, ele) {
+        ele.pause();
+      });
+      /*var a_audio = aClct.getElementsByTagName('audio');
       for (var i = a_audio.length - 1; i >= 0; i--) {
         a_audio[i].pause();
-      };
+      };*/
+      //将li下面的所有样式移除
+      $('li').removeClass('dbl-every');
+      //为该条目添加样式
+      $(this).addClass('dbl-every');
+      dblTag =false;
       var id = $(this).attr('id');
       $.ajax({
         type: "get",
-        url: "http://www.zero.com/netease/data/list/info.php?id=" + id,
+        url: "./data/list/info.php?id=" + id,
         async: "true",
         dataType: "json",
         success: function(json) {
           var data = json[0];
           var id = data.id;
-
-          playBtn = id;
+          //歌词
+          lyric = data.lyc;
+          playBtnTag = id;
           var src = data.src;
-          ($('#' + id).children('.p-icon').children('div').children('audio'))[0].src = src;
-          ($('#' + id).children('.p-icon').children('div').children('audio'))[0].play();
+          var auObj = ($('#' + id).children('.p-icon').children('div').children('audio'))[0];
+          auObj.src = src;
+          //写入缓存
+          if (window.localStorage) {
+            localStorage['lyc'] = data.lyc;
+            localStorage['localLi'] = id;
+            localStorage['audioSrc'] = auObj.src
+          }
+          auObj.play();
           //先清除上一次的歌词、动画
           clearInterval(timer);
           //auTag  =falseshi单击大暂停键的时候可以暂停
@@ -123,29 +144,29 @@ $(function() {
             localStorage['pBarSinger'] = $('#pBarSinger').text();
           }
           //歌词脚本
+          //将计时器的count清零
+          count = 0;
           //
-          //
-          //
-          lyric = data.lyc;
+          //定义一个相对全局变量lyric来存储从ajax获取到的数据，每次获取都会更新这个全局变量。而大播放按钮每次点击也会
           update();
           //1秒之后调用定时器，当执行的时候，update所需的变量早已加载完成。最好放在需要变量的后面
           timer = setInterval(update, 1000);
-
         },
         error: function(xhr) {
-          alert('error');
+          console.log('error');
         }
+
       });
       //auTag = false;
 
-
+       //return false;
 
     }); //delegate
     //下面的一行代码不适用于动态添加的元素。
     /* $a_eveList.on('dblclick', function() {
 
      });*/
-    var playBtn = $('#_play');
+    // var playBtn = $('#_play');
     var oScroll = $('#_lyctrl-scroll')[0];
     var list = $('#_lyc-wor')[0];
     var plane = $('#plane')[0];
@@ -160,7 +181,7 @@ $(function() {
     var lyc_six = $('#lyc_six')[0];
     var lyc_sev = $('#lyc_sev')[0];
 
-
+    //
     var count = 0;
 
     function update() {
@@ -238,19 +259,80 @@ $(function() {
         };
       }
     }
+    //问题：当音乐被缓存点击大播放按钮的时候，点击暂停之后再次点击开始会重新加载音乐：尝试解决方式：定义一个初次播放音乐并消除缓存的标志变量
+    var clearCache = true;
+    var tempDom = false;
     $playBtn.click(function() {
+
       if (auTag) {
         //audio.play();
-        ($('#' + playBtn).children('.p-icon').children('div').children('audio'))[0].play();
-        this.className = 'play-pause';
-        timer = setInterval(update, 1000);
-        auTag = false;
+        if (playBtnTag) {
+          ($('#' + playBtnTag).children('.p-icon').children('div').children('audio'))[0].play();
+          this.className = 'play-pause';
+          //count = 0;
+          timer = setInterval(update, 1000);
+          auTag = false;
+        } else {
+          if (clearCache) {
+            if (localStorage['localLi']) {
+              var id = localStorage['localLi'];
+              var auObj = ($('#' + id).children('.p-icon').children('div').children('audio'))[0];
+              auObj.src = localStorage['audioSrc'];
+              auObj.play();
+              this.className = 'play-pause';
+              lyric = localStorage['lyc'];
+              count = 0;
+              timer = setInterval(update, 1000);
+              auTag = false;
+              clearCache = false;
+              tempDom = auObj;
+            }
+          } else {
+            tempDom.play();
+            this.className = 'play-pause';
+            lyric = localStorage['lyc'];
+            timer = setInterval(update, 1000);
+            auTag = false;
+            //clearCache =false;
+            //tempDom = auObj;
+          }
+
+
+        }
       } else {
         //audio.pause();
-        ($('#' + playBtn).children('.p-icon').children('div').children('audio'))[0].pause();
-        this.className = 'play';
-        clearInterval(timer);
-        auTag = true;
+        if (playBtnTag) {
+          ($('#' + playBtnTag).children('.p-icon').children('div').children('audio'))[0].pause();
+          this.className = 'play';
+          //停止定时器为什么歌词不会走 因为取消了定时器去执行updata 是个函数，当前p中显示的内容不会被更新。
+          clearInterval(timer);
+          auTag = true;
+        } else {
+
+          if (tempDom) {
+            tempDom.pause();
+            this.className = 'play';
+            //停止定时器为什么歌词不会走 因为取消了定时器去执行updata 是个函数，当前p中显示的内容不会被更新。
+            lyric = localStorage['lyc'];
+            clearInterval(timer);
+            auTag = true;
+          } else {
+
+          }
+          /*if (localStorage['localLi']) {
+            var id = localStorage['localLi'];
+            var auObj = ($('#' + id).children('.p-icon').children('div').children('audio'))[0];
+            auObj.src = localStorage['audioSrc'];
+            auObj.pause();
+            this.className = 'play';
+            //停止定时器为什么歌词不会走 因为取消了定时器去执行updata 是个函数，当前p中显示的内容不会被更新。
+            lyric = localStorage['lyc'];
+            clearInterval(timer);
+            auTag = true;
+          }*/
+        }
+
+
       }
     });
 

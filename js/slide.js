@@ -93,7 +93,7 @@ $(function() {
       target.className = 'active';
     } //添加小圆圈样式  end
     var timer = null;
-    timer = setInterval(autoplay, 30000);
+    timer = setInterval(autoplay, 5000);
 
     function autoplay() {
       animate(a_loopImg[iNow], {
@@ -115,7 +115,7 @@ $(function() {
       clearInterval(timer);
     });
     $slideBox.mouseout(function() {
-      timer = setInterval(autoplay, 30000);
+      timer = setInterval(autoplay,5000);
     });
     //封装左滑动和右滑动的函数
     function slide(iTag, value, type, circle) {

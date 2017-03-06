@@ -24,7 +24,7 @@ $(function() {
         animate(aniBar, {
           'top': 0
         });
-      }, 2000);
+      },6000);
 
       function upshow() {
         animate(aniBar, {
@@ -57,7 +57,7 @@ $(function() {
         //将timer给window
       window.timer = timer;
       //小锁
-      lockBtn.addEventListener('click', function() {
+      $(lockBtn).on('click', function() {
         if (lockTag == false) {
           lockTag = true; //点上小锁之后  lockTag变为true.  就不执行移除下滑的动作。
           this.className = 'lock-up';
@@ -66,6 +66,18 @@ $(function() {
           lockTag = false;
           this.className = 'lock-btn';
         }
-      }, false);
+
+
+      });
+      /* lockBtn.addEventListener('click', function() {
+         if (lockTag == false) {
+           lockTag = true; //点上小锁之后  lockTag变为true.  就不执行移除下滑的动作。
+           this.className = 'lock-up';
+           return;
+         } else {
+           lockTag = false;
+           this.className = 'lock-btn';
+         }
+       }, false);*/
     })(window); // auto func
   }) //ready
